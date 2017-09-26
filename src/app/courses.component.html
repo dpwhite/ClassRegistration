@@ -1,0 +1,18 @@
+<div>
+    <div class="col-md-3"><label>Course Name</label></div>
+    <div class="col-md-3"><label>Day</label></div>
+    <div class="col-md-2"><label>Time</label></div>
+    <div class="col-md-2"><label>Duration</label></div>
+    <div class="col-md-2"><label>Details</label></div>
+</div>
+<div *ngFor="let course of courses">
+        <div class="col-md-3">{{course.name}}</div>
+        <div class="col-md-3">{{course.days}}</div>
+        <div class="col-md-2">{{course.startTime}}</div>
+        <div class="col-md-2">{{course.duration}}</div>
+        <div class="col-md-2"><a>details</a></div>
+</div>
+<div>
+<button class="btn btn-outline-dark btn-outline-primary" (click)="addCourse()" type="button">Add+</button>
+
+</div>

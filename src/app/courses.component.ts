@@ -34,37 +34,41 @@ export class CoursesComponent implements OnInit {
         console.log(this.courses);
     }
 
-    addCourse(newCourse: Course, days: DaysOfTheWeek): void {        
+    addCourse(): void {        
         // var tempCourse = {id: 1, name:'Spanish', duration:'50mins', startTime: '1:10p', days: 'Mo, We, Fr'};
         // this.courses.push(tempCourse);
-        var dtw = days.monday;
-        if (days.monday) {
-            newCourse.days = "Mo,";
+        var dtw = this.dotw.monday;
+        if (this.dotw.monday) {
+            this.course.days = "Mo,";
         }
-        if (days.tuesday) {
-            newCourse.days += "Tu,";
+        if (this.dotw.tuesday) {
+            this.course.days += "Tu,";
         }
-        if (days.wednesday) {
-            newCourse.days += "We,";            
+        if (this.dotw.wednesday) {
+            this.course.days += "We,";            
         }
-        if (days.thursday) {
-            newCourse.days += "Th,";
+        if (this.dotw.thursday) {
+            this.course.days += "Th,";
         }
-        if (days.friday) {
-            newCourse.days += "Fr,";
+        if (this.dotw.friday) {
+            this.course.days += "Fr,";
         }
+        this.course.duration += "mins";
 
-        console.log(newCourse.days.charAt(newCourse.days.length-1));
-        newCourse.days.replace(newCourse.days.charAt(newCourse.days.length-1), ""); 
-        this.courses.push(newCourse);
-        this.modalReference.close();
+        this.course.days = this.course.days.slice(0, -1);
+        this.courses.push(this.course);       
+        
     }
 
     open(content: any) {
         this.course = new Course();
+        this.dotw = { monday: false, tuesday: false, wednesday: false, thursday: false, friday: false};
 
         this.closeResult = '';
         this.modalReference = this.modalService.open(content).result.then((result) => {
+          if (result === 'add course') {
+                this.addCourse();
+          }
           this.closeResult = `Closed with: ${result}`;
         }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

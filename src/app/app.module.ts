@@ -6,7 +6,7 @@ import { FormsModule }   from '@angular/forms';
 
 import { AppComponent }  from './app.component';
 import { CoursesComponent } from './courses.component';
-import { StudentsComponent } from './students.component';
+import { StudentsComponent, NgbdModalContent } from './students.component';
 import { FacultyComponent } from './faculty.component';
 
 const routes: Routes = [
@@ -18,7 +18,8 @@ const routes: Routes = [
 
 @NgModule({
   imports:      [ BrowserModule, RouterModule.forRoot(routes), NgbModule.forRoot(), FormsModule ],
-  declarations: [ AppComponent, CoursesComponent, StudentsComponent, FacultyComponent ],
+  declarations: [ AppComponent, CoursesComponent, StudentsComponent, FacultyComponent, NgbdModalContent ],
+  entryComponents: [NgbdModalContent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

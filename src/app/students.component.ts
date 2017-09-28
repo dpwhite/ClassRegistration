@@ -1,9 +1,13 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
+import { StudentService } from './student.service';
+import { Student } from './student';
+
 @Component({
     selector: 'ngbd-modal-content',
+    providers: [StudentService],
     template: `
       <div class="modal-header">
         <h4 class="modal-title">Hi there!</h4>
@@ -12,18 +16,37 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
         </button>
       </div>
       <div class="modal-body">
-        <p>Hello, {{name}}!</p>
+        <p>Hello, {{firstName}}</p>
+        <p>{{lastName}}</p>
+        <p>{{classYear}}</p>
       </div>
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
       </div>
     `
   })
 
-  export class NgbdModalContent {
-    @Input() name: string;
-  
-    constructor(public activeModal: NgbActiveModal) {}
+  export class NgbdModalContent  implements OnInit{
+    @Input() firstName: string;
+    @Input() lastName: string;
+    @Input() classYear: string; 
+    student: Student;
+
+    constructor(public activeModal: NgbActiveModal, private studentService: StudentService) {
+    }
+
+    getStudent(): void {
+        this.student = this.studentService.getStudent();
+    }
+
+    ngOnInit(): void {
+        this.getStudent();
+        this.firstName = this.student.firstName;
+        this.lastName = this.student.lastName;
+        this.classYear = this.student.classYear;
+
+    }
   }
 
 @Component ({
@@ -36,6 +59,8 @@ export class StudentsComponent {
     
       open() {
         const modalRef = this.modalService.open(NgbdModalContent);
-        modalRef.componentInstance.name = 'World';
+        modalRef.componentInstance.firstName = 'Durward';
+        modalRef.componentInstance.lastName = 'White';
+        modalRef.componentInstance.classYear = 'Sophomore';
       }
 }

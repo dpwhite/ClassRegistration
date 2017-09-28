@@ -5,9 +5,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule }   from '@angular/forms'; 
 
 import { AppComponent }  from './app.component';
-import { CoursesComponent } from './courses.component';
-import { StudentsComponent, NgbdModalContent } from './students.component';
-import { FacultyComponent } from './faculty.component';
+import { CoursesComponent } from './courses/courses.component';
+import { StudentsComponent, NgbdModalContent } from './students/students.component';
+import { FacultyComponent } from './faculty/faculty.component';
 
 const routes: Routes = [
   { path: 'courses', component: CoursesComponent },

@@ -1,5 +1,4 @@
 # Angular QuickStart Source
-[![Build Status][travis-badge]][travis-badge-url]
 
 This repository holds the TypeScript source code of the [angular.io quickstart](https://angular.io/docs/ts/latest/quickstart.html),
 the foundation for most of the documentation samples and potentially a good starting point for your application.
@@ -12,6 +11,4 @@ So far I have been fairly successful with using ng-bootstrap.  My application cu
 I figured out how to pass content into a modal dialog.  
 The key is to pass in your content to the ModalService object.  Currently I am only able to pass in intrinsic values and not a complex object like a class. Hopefully I will resolve this issue. 
 ###################
-[travis-badge]: https://travis-ci.org/angular/quickstart.svg?branch=master
-[travis-badge-url]: https://travis-ci.org/angular/quickstart
-"# ClassRegistration" 
+# ClassRegistration" 

@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>The following information is required to add a course.</p>
+    <div class="col-sm-12">
+        <label>Course Name:</label>
+        <input [(ngModel)]="name" type="text" placeholder="e.g. Physics"/>
+    </div>  
+    <div class="col-sm-12"><label>Meeting Days:</label>
+      <input [(ngModel)]="monday" type="checkbox" data-toggle="toggle" value="Mon">Mon
+      <input [(ngModel)]="tuesday" type="checkbox" data-toggle="toggle" value="Tues">Tues
+      <input [(ngModel)]="wednesday" type="checkbox" data-toggle="toggle" value="Wed">Wed
+      <input [(ngModel)]="thursday" type="checkbox" data-toggle="toggle" value="Thurs">Thurs
+      <input [(ngModel)]="friday" type="checkbox" data-toggle="toggle" value="Fri">Fri
+  </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  </div>

@@ -19,40 +19,5 @@
 <button class="btn btn-outline-dark btn-outline-primary" (click)="open(content)" type="button">Add+</button>
 </div>
 
-<ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h4 class="modal-title">Course Add Form</h4>
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <p>The following information is required to add a course.</p>
-            <div class="col-sm-12">
-                <label>Course Name:</label>
-                <input [(ngModel)]="course.name" type="text" placeholder="e.g. Physics"/>
-            </div>        
-            <div class="col-sm-12"><label>Meeting Days:</label>
-                <input [(ngModel)]="dotw.monday" type="checkbox" data-toggle="toggle" value="Mon">Mon
-                <input [(ngModel)]="dotw.tuesday" type="checkbox" data-toggle="toggle" value="Tues">Tues
-                <input [(ngModel)]="dotw.wednesday" type="checkbox" data-toggle="toggle" value="Wed">Wed
-                <input [(ngModel)]="dotw.thursday" type="checkbox" data-toggle="toggle" value="Thurs">Thurs
-                <input [(ngModel)]="dotw.friday" type="checkbox" data-toggle="toggle" value="Fri">Fri
-            </div>
-            <div class="col-sm-12">
-                <label>Start Time:</label>
-                <input [(ngModel)]="course.startTime" type="time">
-            </div>
-            <div class="col-sm-12">
-                <label>Duration</label>
-                <input [(ngModel)]="course.duration" type="number" name="" id="">
-                <label>mins</label>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark btn-outline-primary" (click)="c('add course')">Add Course</button>
-          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-        </div>
-      </ng-template>
-      
+     
   <pre>{{closeResult}}</pre>

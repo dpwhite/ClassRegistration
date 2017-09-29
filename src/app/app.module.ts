@@ -5,8 +5,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule }   from '@angular/forms'; 
 
 import { AppComponent }  from './app.component';
-import { CoursesComponent } from './courses/courses.component';
-import { StudentsComponent, NgbdModalContent } from './students/students.component';
+import { CoursesComponent, CourseModalContent } from './courses/courses.component';
+import { StudentsComponent, StudentModalContent } from './students/students.component';
 import { FacultyComponent } from './faculty/faculty.component';
 
 const routes: Routes = [
@@ -18,8 +18,8 @@ const routes: Routes = [
 
 @NgModule({
   imports:      [ BrowserModule, RouterModule.forRoot(routes), NgbModule.forRoot(), FormsModule ],
-  declarations: [ AppComponent, CoursesComponent, StudentsComponent, FacultyComponent, NgbdModalContent ],
-  entryComponents: [NgbdModalContent],
+  declarations: [ AppComponent, CoursesComponent, StudentsComponent, FacultyComponent, StudentModalContent, CourseModalContent ],
+  entryComponents: [StudentModalContent, CourseModalContent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

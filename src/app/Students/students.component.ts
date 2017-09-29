@@ -12,7 +12,7 @@ import { Student } from './student';
     templateUrl:  './student.modal.content.html'
   })
 
-  export class NgbdModalContent  implements OnInit{
+  export class StudentModalContent  implements OnInit{
     @Input() firstName: string;
     @Input() lastName: string;
     @Input() classYear: string; 
@@ -43,7 +43,7 @@ export class StudentsComponent {
     constructor(private modalService: NgbModal) {}
     
       open() {
-        const modalRef = this.modalService.open(NgbdModalContent);
+        const modalRef = this.modalService.open(StudentModalContent);
         modalRef.componentInstance.firstName = 'Durward';
         modalRef.componentInstance.lastName = 'White';
         modalRef.componentInstance.classYear = 'Sophomore';

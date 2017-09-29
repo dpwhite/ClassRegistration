@@ -5,10 +5,19 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Hello, {{firstName}}</p>
-    <p>{{lastName}}</p>
-    <p>{{classYear}}</p>
-  </div>
+    <div class="col-sm-12">
+      <label>First Name</label>
+      <input [(ngModel)]="firstName" type="text" />
+    </div>
+      <div class="col-sm-12">
+          <label>Last Name</label>
+      <input [(ngModel)]="lastName" type="text" />
+    </div>
+      <div class="col-sm-12">
+          <label>Class Year</label>
+      <input [(ngModel)]="classYear" type="text" />
+    </div>
+</div>
   
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

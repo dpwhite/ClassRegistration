@@ -11,7 +11,7 @@ import { Course } from './course';
   templateUrl: './course.modal.content.html',
   providers: [CourseService]
 })
-export class CourseModalContent implements OnInit {
+export class CourseModalContent{
   @Input() name: string;
   @Input() monday: boolean;
   @Input() tuesday: boolean;
@@ -23,17 +23,8 @@ export class CourseModalContent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal) {}
   
-  // ngOnInit(): void {
-  //   this.monday = false;
-  //   this.tuesday = false;
-  //   this.wednesday = false;
-  //   this.thursday = false;
-  //   this.friday = false;
-  //   this.duration = 0;
-  //   this.name = '';
-  // }
 
-  editCourse() : Course {
+  editCourse() {
     this.name = 'Durward White';
   }
 
@@ -54,7 +45,7 @@ export class DaysOfTheWeek {
     providers: [CourseService]
 })
 
-export class CoursesComponent implements OnInit{
+export class CoursesComponent implements OnInit {
   courses: Course[];
   course: Course;
   dotw: DaysOfTheWeek;
@@ -78,6 +69,11 @@ export class CoursesComponent implements OnInit{
       modalRef.componentInstance.wednesday = course.dotw.wednesday;
       modalRef.componentInstance.thursday = course.dotw.thursday;
       modalRef.componentInstance.friday = course.dotw.friday;
+      modalRef.componentInstance.startTime = course.startTime;
+      modalRef.result.then((result) => {
+        if (result === 'Save')
+          course.name = content.name;
+      });
     }
 
   getCourses(): void {

@@ -19,8 +19,9 @@
     </div>
     <div class="col-sm-12">
       <label>Start Time:</label>
-      <input [(ngModel)]="startTime" type="time">
+      <input [(ngModel)]="startTime" value="{{startTime}}" type="time">
   </div>
+  
   <div class="col-sm-12">
       <label>Duration</label>
       <input [(ngModel)]="duration" type="number" name="" id="">
@@ -28,5 +29,6 @@
   </div>
   </div>
   <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark btn-outline-primary" (click)="activeModal.close('Save')">Save</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
   </div>

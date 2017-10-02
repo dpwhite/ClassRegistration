@@ -18,7 +18,7 @@ export class CourseService {
             if (item.id === id) {
                 course = item;
                 var duration = parseInt(item.duration);
-                course.duration = duration;
+                course.duration = duration.toString();
             }
         });
         return course;

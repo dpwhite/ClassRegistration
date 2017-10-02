@@ -8,19 +8,35 @@ import { Course } from './course';
 
 @Component({
   selector: 'ngbd-modal-content',
-  templateUrl: './course.modal.content.html'
+  templateUrl: './course.modal.content.html',
+  providers: [CourseService]
 })
 export class CourseModalContent implements OnInit {
   @Input() name: string;
   @Input() monday: boolean;
   @Input() tuesday: boolean;
   @Input() wednesday: boolean;
+  @Input() thursday: boolean;
+  @Input() friday: boolean;
+  @Input() duration: number;
+  @Input() startTime: Date;
 
   constructor(public activeModal: NgbActiveModal) {}
-  ngOnInit(): void {
-    this.monday = true;
-    this.tuesday = true;
+  
+  // ngOnInit(): void {
+  //   this.monday = false;
+  //   this.tuesday = false;
+  //   this.wednesday = false;
+  //   this.thursday = false;
+  //   this.friday = false;
+  //   this.duration = 0;
+  //   this.name = '';
+  // }
+
+  editCourse() : Course {
+    this.name = 'Durward White';
   }
+
 }
 
 
@@ -40,14 +56,28 @@ export class DaysOfTheWeek {
 
 export class CoursesComponent implements OnInit{
   courses: Course[];
+  course: Course;
   dotw: DaysOfTheWeek;
 
   constructor(private modalService: NgbModal, private courseService: CourseService) {}
   
-    open() {
+    open() {      
       const modalRef = this.modalService.open(CourseModalContent);
       modalRef.componentInstance.name = 'World';
-      modelRef.componentInstance.monday = true;
+    }
+
+    edit(content: Course) {
+      console.log(content);
+      
+      const modalRef = this.modalService.open(CourseModalContent);
+      var course = this.courseService.getCourse(content.id);
+      modalRef.componentInstance.name = course.name;
+      modalRef.componentInstance.duration = course.duration;
+      modalRef.componentInstance.monday = course.dotw.monday;
+      modalRef.componentInstance.tuesday = course.dotw.tuesday;
+      modalRef.componentInstance.wednesday = course.dotw.wednesday;
+      modalRef.componentInstance.thursday = course.dotw.thursday;
+      modalRef.componentInstance.friday = course.dotw.friday;
     }
 
   getCourses(): void {

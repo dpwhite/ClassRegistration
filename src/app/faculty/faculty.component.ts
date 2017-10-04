@@ -12,7 +12,7 @@ export class FacultyComponent {
     subscription: any;
 
     countChange(event: any) {
-      this.myCount = event;
+      // this.myCount = event;
     }
 
     constructor(private modalService: NgbModal) {}

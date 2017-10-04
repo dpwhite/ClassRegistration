@@ -25,10 +25,15 @@ export class CoursesComponent implements OnInit {
   dotw: DaysOfTheWeek;
   duration: number = 50;
   subscription: any;
+  courseSubscription: any;
 
-  durationChange(event: any) {
-    this.duration = event;
-  }
+  // durationChange(event: any) {
+  //   // this.duration = event;
+  // }
+
+  // courseChange(event: any){}
+
+
 
 
   constructor(private modalService: NgbModal, private courseService: CourseService) {}
@@ -38,22 +43,57 @@ export class CoursesComponent implements OnInit {
     }
 
     edit(content: Course) {
-      console.log(content);
-      
+     
       const modalRef = this.modalService.open(CourseModalContent);
       this.subscription = modalRef.componentInstance.durationChange.subscribe((event: any) => {
         this.duration = event;
         content.duration = event;
       })
-      var course = this.courseService.getCourse(content.id);
-      modalRef.componentInstance.name = course.name;
-      modalRef.componentInstance.duration = course.duration;
-      modalRef.componentInstance.monday = course.dotw.monday;
-      modalRef.componentInstance.tuesday = course.dotw.tuesday;
-      modalRef.componentInstance.wednesday = course.dotw.wednesday;
-      modalRef.componentInstance.thursday = course.dotw.thursday;
-      modalRef.componentInstance.friday = course.dotw.friday;
-      modalRef.componentInstance.startTime = course.startTime;
+      this.courseSubscription = modalRef.componentInstance.valueChange.subscribe((event: any) => {
+        switch(event.propName) {
+          case "name":
+            content.name = event.propValue;
+            break;
+          case "Mo":
+            if (event.propValue === 'true')
+            {
+              content.monday = true;             
+              content.dotw.monday = true;
+            }
+            break;
+          case "Tu":
+            if (event.propValue === 'true') {
+              content.tuesday = true;
+              
+            }
+            
+            break;
+          case "We":
+            content.wednesday = (event.propValue === 'true');
+            break;
+          case "Th": 
+            content.thursday = (event.propValue === 'true');
+            break;
+          case "Fr":
+            content.friday = (event.propValue === 'true');
+            break;
+          case "startTime":
+            content.startTime = event.propValue;
+            break;
+          case "duration": 
+            content.duration = event.propValue;
+        }
+       })
+      
+//      var course = this.courseService.getCourse(content.id);
+      modalRef.componentInstance.name = content.name;
+      modalRef.componentInstance.duration = content.duration;
+      modalRef.componentInstance.monday = content.dotw.monday;
+      modalRef.componentInstance.tuesday = content.dotw.tuesday;
+      modalRef.componentInstance.wednesday = content.dotw.wednesday;
+      modalRef.componentInstance.thursday = content.dotw.thursday;
+      modalRef.componentInstance.friday = content.dotw.friday;
+      modalRef.componentInstance.startTime = content.startTime;
       modalRef.result.then((result) => {
         if (result === 'Save')
             console.log(result);
@@ -86,9 +126,8 @@ export class CoursesComponent implements OnInit {
     this.course.duration += "mins";
 
     this.course.days = this.course.days.slice(0, -1);
-    this.courses.push(this.course);       
-    
-}
+    this.courses.push(this.course);           
+  }
 
   ngOnInit(): void {
     this.getCourses();

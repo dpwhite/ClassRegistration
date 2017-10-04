@@ -8,23 +8,23 @@
     <p>The following information is required to add a course.</p>
     <div class="col-sm-12">
         <label>Course Name:</label>
-        <input [(ngModel)]="name" type="text" placeholder="e.g. Physics"/>
+        <input [(ngModel)]="name" type="text" (change)="changeDuration('name')" placeholder="e.g. Physics"/>
     </div>  
     <div class="col-sm-12"><label>Meeting Days:</label>
-      <input [(ngModel)]="monday" type="checkbox" data-toggle="toggle" value="Mon">Mon
-      <input [(ngModel)]="tuesday" type="checkbox" data-toggle="toggle" value="Tues">Tues
-      <input [(ngModel)]="wednesday" type="checkbox" data-toggle="toggle" value="Wed">Wed
-      <input [(ngModel)]="thursday" type="checkbox" data-toggle="toggle" value="Thurs">Thurs
-      <input [(ngModel)]="friday" type="checkbox" data-toggle="toggle" value="Fri">Fri
+      <input [(ngModel)]="monday" type="checkbox" (change)="changeDuration('monday')" data-toggle="toggle" value="Mon">Mon
+      <input [(ngModel)]="tuesday" type="checkbox" (change)="changeDuration('tuesday')" data-toggle="toggle" value="Tues">Tues
+      <input [(ngModel)]="wednesday" type="checkbox" (change)="changeDuration('wednesday')" data-toggle="toggle" value="Wed">Wed
+      <input [(ngModel)]="thursday" type="checkbox" (change)="changeDuration('thursday')" data-toggle="toggle" value="Thurs">Thurs
+      <input [(ngModel)]="friday" type="checkbox" (change)="changeDuration('friday')" data-toggle="toggle" value="Fri">Fri
     </div>
     <div class="col-sm-12">
       <label>Start Time:</label>
-      <input [(ngModel)]="startTime" value="{{startTime}}" type="time">
+      <input [(ngModel)]="startTime" (change)="changeDuration('startTime')" value="{{startTime}}" type="time">
   </div>
   
   <div class="col-sm-12">
       <label>Duration</label>
-      <input [(ngModel)]="duration" (change)="changeDuration()" type="number" name="" id="">
+      <input [(ngModel)]="duration" (change)="changeDuration('duration')" type="number" name="" id="">
       <label>mins</label>
   </div>
   </div>

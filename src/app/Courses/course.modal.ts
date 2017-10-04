@@ -20,11 +20,16 @@ export class CourseModalContent{
   @Input() friday: boolean;
   @Input() duration: number;
   @Input() startTime: Date;
-  
+  @Output() durationChange: EventEmitter<number> = new EventEmitter<number>();
+ 
   constructor(public activeModal: NgbActiveModal) {}
   
   editCourse() {
     this.name = 'Durward White';
   }
 
+  changeDuration() {
+    this.durationChange.emit(this.duration);
+    console.log(this.duration);
+  }
 }

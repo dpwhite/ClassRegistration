@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 import { CourseService } from './course.service';
@@ -23,17 +23,28 @@ export class CoursesComponent implements OnInit {
   courses: Course[];
   course: Course;
   dotw: DaysOfTheWeek;
+  duration: number = 50;
+  subscription: any;
+
+  durationChange(event: any) {
+    this.duration = event;
+  }
+
 
   constructor(private modalService: NgbModal, private courseService: CourseService) {}
   
     open() {      
-      const modalRef = this.modalService.open(CourseModalContent);
+      const modalRef = this.modalService.open(CourseModalContent);     
     }
 
     edit(content: Course) {
       console.log(content);
       
       const modalRef = this.modalService.open(CourseModalContent);
+      this.subscription = modalRef.componentInstance.durationChange.subscribe((event: any) => {
+        this.duration = event;
+        content.duration = event;
+      })
       var course = this.courseService.getCourse(content.id);
       modalRef.componentInstance.name = course.name;
       modalRef.componentInstance.duration = course.duration;
@@ -51,7 +62,6 @@ export class CoursesComponent implements OnInit {
 
   getCourses(): void {
     this.courses = this.courseService.getCourses();
-    console.log(this.courses);
   }
 
   addCourse(): void {        
@@ -84,5 +94,11 @@ export class CoursesComponent implements OnInit {
     this.getCourses();
     this.course = new Course();
     this.dotw = { monday: false, tuesday: false, wednesday: false, thursday: false, friday: false};      
+  }
+
+  ngOnDestroy() {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

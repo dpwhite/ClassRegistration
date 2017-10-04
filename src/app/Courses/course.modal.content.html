@@ -24,7 +24,7 @@
   
   <div class="col-sm-12">
       <label>Duration</label>
-      <input [(ngModel)]="duration" type="number" name="" id="">
+      <input [(ngModel)]="duration" (change)="changeDuration()" type="number" name="" id="">
       <label>mins</label>
   </div>
   </div>

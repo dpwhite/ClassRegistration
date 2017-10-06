@@ -20,10 +20,13 @@ export class CourseModalContent{
   @Input() friday: boolean;
   @Input() duration: number;
   @Input() startTime: Date;
+  @Input() teacher: string;
+
   @Output() durationChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
   // @Output() courseInfoChange: EventEmitter<Course> = new EventEmitter<Course>();
-
+  teachers: string[] = ["Durward White", "Frank Smith", "Martin Carter", "Sheila Jones"];
+  
  
   constructor(public activeModal: NgbActiveModal) {}
   
@@ -74,6 +77,10 @@ export class CourseModalContent{
     {
       changeObj.propName = "startTime";
       changeObj.propValue = this.startTime.toLocaleString();
+    }
+    if (content === 'teacher') {
+      changeObj.propName = 'teacher';
+      changeObj.propValue = this.teacher;
     }
     this.valueChange.emit(changeObj);    
   }

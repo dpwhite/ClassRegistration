@@ -20,13 +20,20 @@
     <div class="col-sm-12">
       <label>Start Time:</label>
       <input [(ngModel)]="startTime" (change)="changeDuration('startTime')" value="{{startTime}}" type="time">
-  </div>
+    </div>
   
-  <div class="col-sm-12">
-      <label>Duration</label>
-      <input [(ngModel)]="duration" (change)="changeDuration('duration')" type="number" name="" id="">
-      <label>mins</label>
-  </div>
+    <div class="col-sm-12">
+        <label>Duration</label>
+        <input [(ngModel)]="duration" (change)="changeDuration('duration')" type="number" name="" id="">
+        <label>mins</label>
+    </div>
+    <div class="col-md-12">
+      <label>Instructor:</label>
+      <select [(ngModel)]="teacher" (change)="changeDuration('teacher')">
+          <option>Unassigned</option>
+          <option *ngFor="let t of teachers"  [ngValue]="t">{{t}}</option>
+      </select>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark btn-outline-primary" (click)="activeModal.close('Save')">Save</button>

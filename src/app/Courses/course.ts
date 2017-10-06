@@ -12,4 +12,9 @@ export class Course {
     dotw: WeekDays;
     startTime: string;
     duration: string;
+    teacher: string;
+
+    constructor() {
+        this.dotw = new WeekDays();
+    }
 }

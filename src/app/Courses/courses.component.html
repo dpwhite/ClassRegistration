@@ -1,23 +1,21 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3"><label>Course Name</label></div>
-        <div class="col-md-3"><label>Day</label></div>
+        <div class="col-md-2"><label>Course Name</label></div>
+        <div class="col-md-2"><label>Instructor</label></div>
+        <div class="col-md-2"><label>Day</label></div>
         <div class="col-md-2"><label>Time</label></div>
         <div class="col-md-2"><label>Duration (in mins)</label></div>
         <div class="col-md-2"><label>Details</label></div>
     </div>        
     <div class="row" *ngFor="let course of courses">
-            <div class="col-md-3">{{course.name}}</div>
-            <div class="col-md-3">{{course.days}}</div>
+            <div class="col-md-2"><u (click)="edit(course)">{{course.name}}</u></div>
+            <div class="col-md-2">{{course.teacher}}</div>
+            <div class="col-md-2">{{course.days}}</div>
             <div class="col-md-2">{{course.startTime}}</div>
             <div class="col-md-2">{{course.duration}}</div>
             <div class="col-md-2"><button (click)="edit(course)" type="button" class="btn">Edit</button>
     </div>    
 </div>
 <div>
-<button class="btn btn-outline-dark btn-outline-primary" (click)="open(content)" type="button">Add+</button>
+<button class="btn btn-outline-dark btn-outline-primary" (click)="addCourse()" type="button">Add+</button>
 </div>
-
-<div> Current: {{ duration }} </div>
-     
-  <pre>{{closeResult}}</pre>
